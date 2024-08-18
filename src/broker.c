@@ -7,7 +7,6 @@
 #include <signal.h>
 #include "lib/socket.h"
 #include "lib/queue.h"
-#include "lib/linked_list.h"
 
 #define FILEPATH "msg.sock"
 #define BUFFER_SIZE 64
@@ -32,8 +31,6 @@ void start_server(char* file_path, int buffer_size) {
     int num_clients = 0;
     struct sockaddr_un address;
     struct pollfd clients[MAX_CLIENTS];
-
-    LinkedList* list = init_list();
 
     if (file_exists(file_path)) unlink(file_path);
 
