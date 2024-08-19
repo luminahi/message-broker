@@ -3,18 +3,14 @@
 
 #include <sys/un.h>
 
-void create_socket(int*, struct sockaddr_un*, char*);
+int create_server(char* filepath);
 
-void connect_socket(int, struct sockaddr_un*);
+int create_connection(char* filepath);
 
-void bind_socket(int, struct sockaddr_un*);
+int accept_connection(int server_socket_fd);
 
-void listen_socket(int);
+int receive_message(int socket_fd, char* buffer, int buffer_length);
 
-int accept_connection(int);
-
-int receive_message(int, char*, int);
-
-void send_message(int, char*, int);
+void send_message(int socket_fd, char* message, int message_length);
 
 #endif
