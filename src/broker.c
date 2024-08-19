@@ -8,7 +8,7 @@
 #include "lib/socket.h"
 #include "lib/queue.h"
 
-#define FILEPATH "sock.msg"
+#define FILEPATH "msg.sock"
 
 bool file_exists(const char* file_path) {
     struct stat file_stat;
