@@ -73,9 +73,12 @@ int receive_message(int socket_fd, char* buffer, int buffer_length) {
     return res;
 }
 
-void send_message(int socket_fd, char* message, int message_length) {
-    if (send(socket_fd, message, message_length, 0) == -1) {
+int send_message(int socket_fd, char* message, int message_length) {
+    int res = send(socket_fd, message, message_length, 0);
+    if (res == -1) {
         perror("send");
         exit(EXIT_FAILURE);
     }
+
+    return res;
 }

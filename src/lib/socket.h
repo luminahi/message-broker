@@ -7,10 +7,10 @@ int create_server(char* filepath);
 
 int create_connection(char* filepath);
 
-int accept_connection(int server_socket_fd);
+int accept_connection(int socket_fd);
 
 int receive_message(int socket_fd, char* buffer, int buffer_length);
 
-void send_message(int socket_fd, char* message, int message_length);
+int send_message(int socket_fd, char* message, int message_length);
 
 #endif
