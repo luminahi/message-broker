@@ -4,11 +4,10 @@
 #include <string.h>
 #include "queue.h"
 
-static Node* create_node(char* message, int fd) {
+static Node* create_node(char* message) {
   Node* node = (Node*) malloc(sizeof(Node));
   node->message = (char*) malloc(sizeof(char) * 128);
   
-  node->fd = fd;
   strcpy(node->message, message);
   node->prev = NULL;
   node->next = NULL;
@@ -16,8 +15,8 @@ static Node* create_node(char* message, int fd) {
   return node;
 }
 
-void enqueue(Queue* queue, char* name, int fd) {
-  Node* node = create_node(name, fd);
+void enqueue(Queue* queue, char* name) {
+  Node* node = create_node(name);
 
   if (queue->size == 0) {
     queue->head = node;
@@ -53,22 +52,15 @@ void clear_queue(Queue* queue) {
   }
 }
 
-void iterate(Queue queue, void (*fn)(int)) {
-  Node* temp = queue.tail;
-
-  while (temp) {
-    fn(temp->fd);
-    temp = temp->next;
-  }
-}
-
 void print_queue(Queue queue) {
   Node* temp = queue.tail;
 
   while (temp) {
-    printf("fd: %d - %s\n", temp->fd, temp->message);
+    printf("[%s] -> ", temp->message);
     temp = temp->next;
   }
+
+  putchar('\n');
 }
 
 Queue* init_queue() {
