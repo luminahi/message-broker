@@ -50,11 +50,16 @@ void start_client(int socket_fd, int buffer_size) {
     close(socket_fd);
 }
 
+void handshake(int socket_fd, char* topic) {
+    send_message(socket_fd, topic, strlen(topic));
+}
+
 int main(int argc, char* argv[]) {
     int socket_fd;
     char* filepath = "msg.sock";
 
     socket_fd = create_connection(filepath);
+    handshake(socket_fd, argv[1] ? argv[1] : "*");
     start_client(socket_fd, 128);
 
     return 0;
