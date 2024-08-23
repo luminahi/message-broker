@@ -3,8 +3,6 @@
 #include <unistd.h>
 #include <poll.h>
 #include <sys/socket.h>
-#include <sys/un.h>
-#include <string.h>
 #include "lib/queue.h"
 #include "lib/socket.h"
 
