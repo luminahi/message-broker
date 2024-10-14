@@ -40,6 +40,7 @@ void start_client(int socket_fd, int buffer_size) {
 
 void handshake(int socket_fd, char* topic) {
     send_message(socket_fd, topic, strlen(topic));
+    printf("[handshake completed]");
 }
 
 int main(int argc, char* argv[]) {
